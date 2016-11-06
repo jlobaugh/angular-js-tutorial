@@ -1,0 +1,85 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/vendor/pure/pure.css">
+    <script src="js/vendor/angular.js"></script>
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="js/pagination.js"></script>
+    <style>
+    ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd; /* Gray */
+}
+</style>
+</head>
+
+<body ng-app="myModule">
+
+
+    <div ng-controller="ctrlRead">
+
+
+        <table class="pure-table">
+            <thead>
+
+                <tr>
+                    <th class="id" custom-sort order="'id'" sort="sort">Id&nbsp;</th>
+                    <th class="name" custom-sort order="'name'" sort="sort">Name&nbsp;</th>
+                    <th class="description" custom-sort order="'description'" sort="sort">Description&nbsp;</th>
+                    <th class="field3" custom-sort order="'field3'" sort="sort">Field 3&nbsp;</th>
+                    <th class="field4" custom-sort order="'field4'" sort="sort">Field 4&nbsp;</th>
+                    <th class="field5" custom-sort order="'field5'" sort="sort">Field 5&nbsp;</th>
+                </tr>
+            </thead>
+            <pre>pagedItems.length: {{pagedItems.length|json}}</pre>
+            <pre>currentPage: {{currentPage|json}}</pre>
+            <pre>currentPage: {{sort|json}}</pre>
+            <tbody>
+                <tr ng-repeat="item in pagedItems[currentPage] | orderBy:sort.sortingOrder:sort.reverse">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.description}}</td>
+                    <td>{{item.field3}}</td>
+                    <td>{{item.field4}}</td>
+                    <td>{{item.field5}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+                        <ul class="pagination">
+                            <li ng-class="{disabled: currentPage == 0}">
+                                <a href ng-click="prevPage()">« Prev</a>
+                            </li>
+
+                            <li ng-repeat="n in range(pagedItems.length, currentPage, currentPage + gap) " ng-class="{active: n == currentPage}" ng-click="setPage()">
+                                <a href ng-bind="n + 1">1</a>
+                            </li>
+
+                            <li ng-class="{disabled: (currentPage) == pagedItems.length - 1}">
+                                <a href ng-click="nextPage()">Next »</a>
+                            </li>
+                        </ul>
+        
+    </div>
+</body>
+
+</html>
