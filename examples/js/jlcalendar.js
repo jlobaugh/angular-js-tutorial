@@ -27,11 +27,11 @@ app.directive("jlCalendar", function () {
             var itemsLength = scope.items.length;
             var calStartDate_ = _firstSunday(scope.items[0].startDate);
             var calEndDate_ = _lastSaturday(scope.items[itemsLength - 1].endDate);
-            scope.weeks  = _buildCalendar(calStartDate_ );
+            scope.weeks  = _buildCalendar(calStartDate_, calEndDate_ );
 
 
             function _firstSunday(date_) {
-                return _addDays(date_, date_getDate() - date_.getDay())
+                return _addDays(date_, date_.getDate() - date_.getDay())
             }
             function _addDays(date_, days) {
                 var d = new Date(date_.getTime());
@@ -39,7 +39,7 @@ app.directive("jlCalendar", function () {
                 return d;
             }
             function _lastSaturday(date_) {
-                return _addDays(date_, -d.getDay() + 6);
+                return _addDays(date_, date_.getDay() + 6);
             }
             function _sameDate(date1, date2) {
                 var y1_ = date1.getFullYear();
