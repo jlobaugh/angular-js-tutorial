@@ -10,7 +10,7 @@ var scheduleItems = [
 ];
 // Define the `itemListCtrlr` controller on the `myApp` module
 app.controller('calendarController', ["$scope", function calendarController($scope) {
-    $scope.items = scheduleItems
+    $scope.items = {} 
 }]);
 
 
@@ -23,12 +23,26 @@ app.directive("jlCalendar", function () {
         scope: {
             items: "="
         },
-        link: function (scope) {
+
+/*
+      link: function(scope, element, attr) {
+        element.bind('click', scope.info.callback );
+        console.log( "inside link" ); 
+*/
+
+        link: function (scope, element, attr) {
+            /*
             var itemsLength = scope.items.length;
             var calStartDate_ = _firstSunday(scope.items[0].startDate);
             var calEndDate_ = _lastSaturday(scope.items[itemsLength - 1].endDate);
-            scope.weeks  = _buildCalendar(calStartDate_, calEndDate_ );
+            */
+            
+            /*
+            var calStartDate_ = _firstSunday( scope.items.startDate );
+            var calEndDate_ = _lastSaturday( scope.items.endDate );
 
+              = _buildCalendar(calStartDate_, calEndDate_ );
+            */
 
             function _firstSunday(date_) {
                 return _addDays(date_, date_.getDate() - date_.getDay())
@@ -62,18 +76,18 @@ app.directive("jlCalendar", function () {
                 while (dayCount_ < calDays_) {
 
                     var week = {
-                        "mon": _addDays(startDate, dayCount_),
-                        "tue": _addDays(startDate, dayCount_),
-                        "wed": _addDays(startDate, dayCount_),
-                        "thu": _addDays(startDate, dayCount_),
-                        "fri": _addDays(startDate, dayCount_),
-                        "sat": _addDays(startDate, dayCount_),
-                        "sun": _addDays(startDate, dayCount_)
+                        "sun": _addDays(startDate, dayCount_),
+                        "mon": _addDays(_addDays(startDate, 1 ), dayCount_),
+                        "tue": _addDays(_addDays(startDate, 2 ), dayCount_),
+                        "wed": _addDays(_addDays(startDate, 3 ), dayCount_),
+                        "thu": _addDays(_addDays(startDate, 4 ), dayCount_),
+                        "fri": _addDays(_addDays(startDate, 5 ), dayCount_),
+                        "sat": _addDays(_addDays(startDate, 6 ), dayCount_),
                     };
                     weeks_.push(week);
                     dayCount_ = dayCount_ + 7;
-                    return weeks_;
                 }
+                return weeks_;
             }
 
         }

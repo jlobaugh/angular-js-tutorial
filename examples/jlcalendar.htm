@@ -17,6 +17,10 @@
 
         <p>Two way data binding.</p>
         <div ng-controller="calendarController">
+            <input type="date" id="startDateInput" name="input1" ng-model="items.startDate"
+       placeholder="yyyy-MM-dd"   />
+            <input type="date" id="endDateInput" name="inputi2" ng-model="items.endDate"
+       placeholder="yyyy-MM-dd"  />
             <jl-calendar items="items" ></jl-calendar>
         </div>
 

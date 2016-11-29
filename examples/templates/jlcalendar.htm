@@ -1,4 +1,4 @@
-
+<button text="calculate" ng-click="updateCalendar"  ></button>
 <table class="pure-table">
     <thead>
         <tr>
@@ -15,13 +15,13 @@
 
     <tbody>
         <tr ng-repeat="week in weeks">
-            <td>week.sun</td>
-            <td>week.mon</td>
-            <td>week.tue</td>
-            <td>week.wed</td>
-            <td>week.thu</td>
-            <td>week.fri</td>
-            <td>week.sat</td>
+            <td>{{week.sun}}</td>
+            <td>{{week.mon}}</td>
+            <td>{{week.tue}}</td>
+            <td>{{week.wed}}</td>
+            <td>{{week.thu}}</td>
+            <td>{{week.fri}}</td>
+            <td>{{week.sat}}</td>
             
         </tr>
     </tbody>
