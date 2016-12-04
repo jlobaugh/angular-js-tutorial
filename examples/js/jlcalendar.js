@@ -1,16 +1,22 @@
+"use strict";
+
 // Define the `myApp` module
 var app = angular.module('myApp', []);
 var scheduleItems = [
 
-    { name: "gaodeng", product: "rgs", startDate: new Date(2016, 10, 31, 09, 00), endDate: new Date(2016, 11, 07, 08, 45), id: 456 },
-    { name: "tongwen", product: "rgs", startDate: new Date(2016, 11, 07, 09, 00), endDate: new Date(2016, 11, 14, 08, 45), id: 456 },
-    { name: "dass", product: "rgs", startDate: new Date(2016, 11, 14, 09, 00), endDate: new Date(2016, 11, 21, 08, 45), id: 456 },
-    { name: "lobaugj", product: "rgs", startDate: new Date(2016, 11, 21, 09, 00), endDate: new Date(2016, 11, 28, 08, 45), id: 456 }
+    { name: "gaodeng", product: "rgs", startDate: new Date(2016, 10, 31, 9, 0), endDate: new Date(2016, 11, 7, 8, 45), id: 456 },
+    { name: "tongwen", product: "rgs", startDate: new Date(2016, 11, 7, 9, 0), endDate: new Date(2016, 11, 14, 8, 45), id: 456 },
+    { name: "dass", product: "rgs", startDate: new Date(2016, 11, 14, 9, 0), endDate: new Date(2016, 11, 21, 8, 45), id: 456 },
+    { name: "lobaugj", product: "rgs", startDate: new Date(2016, 11, 21, 9, 0), endDate: new Date(2016, 11, 28, 8, 45), id: 456 }
 
 ];
 // Define the `itemListCtrlr` controller on the `myApp` module
 app.controller('calendarController', ["$scope", function calendarController($scope) {
-    $scope.items = {} 
+    $scope.myFunc = function() { 
+                                    $scope.controlApi.buildCalendar();
+                                    };
+    $scope.controlApi = {};
+    $scope.controlApi.items = scheduleItems; 
 }]);
 
 
@@ -19,10 +25,12 @@ app.controller('calendarController', ["$scope", function calendarController($sco
 app.directive("jlCalendar", function () {
     return {
         restrict: "E",
+        replace : true,
         templateUrl: "templates/jlcalendar.htm",
         scope: {
-            items: "="
-        },
+            controlApi:  '='
+            },
+        
 
 /*
       link: function(scope, element, attr) {
@@ -43,7 +51,11 @@ app.directive("jlCalendar", function () {
 
               = _buildCalendar(calStartDate_, calEndDate_ );
             */
+            
 
+
+
+            
             function _firstSunday(date_) {
                 return _addDays(date_, date_.getDate() - date_.getDay())
             }
@@ -90,6 +102,16 @@ app.directive("jlCalendar", function () {
                 return weeks_;
             }
 
+            scope.internalApi = scope.controlApi || {} ;
+            scope.internalApi.buildCalendar = function ()
+            {
+              var internalApi_ = scope.internalApi;
+              var itemsLength = internalApi_.items.length;
+              var calStartDate_ = _firstSunday(internalApi_.items[0].startDate);
+              var calEndDate_ = _lastSaturday(internalApi_.items[itemsLength - 1].endDate);
+              scope.weeks = _buildCalendar( calStartDate_, calEndDate_ );
+
+            }
         }
     }
 });

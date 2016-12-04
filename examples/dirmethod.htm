@@ -11,17 +11,26 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/angular.js"></script>
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-        <script src="js/jlcalendar.js"></script>
+        <script src="js/vendor/date.js"></script>
+        <script src="js/vendor/moment.js"></script>
+        <script src="js/dirmethod.js"></script>
     </head>
     <body ng-app="myApp">
-
-        <p>Two way data binding.</p>
-        <div ng-controller="calendarController">
-        {{controlApi}}
-        <button ng-click="myFunc()" >Build</button>
-            <jl-calendar control-api="controlApi" ></jl-calendar>
-        </div>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-    </body>
+    
+    <div ng-controller="MainCtrl">
+    <button ng-click="focusinControl.takeTablet()">Call directive function</button>
+    <p>
+      <b>In controller scope:</b>
+      {{focusinControl}}
+    </p>
+    <p>
+      <b>In directive scope:</b>
+      <focusin control="focusinControl"></focusin>
+    </p>
+    <p>
+      <b>Without control object:</b>
+      <focusin></focusin>
+    </p>
+   </body>
 </html>
+
