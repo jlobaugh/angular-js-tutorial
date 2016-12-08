@@ -130,6 +130,59 @@ table tr td, th{
  
 }
 
+.chip {
+    display: inline-block;
+    position: relative;
+    padding: 0 10px;
+    max-height: 20px;
+/*    font-size: 16px; */
+    line-height: 20px;
+    border-radius: 10px;
+    background-color: #f1f1f1;
+    text-overflow: clip;
+    overflow: hidden;
+}
+/*
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+*/
+
+.chip .chiptiptext {
+    /* visibility: hidden; */
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    
+}
+
+.chip:hover 
+{
+    overflow: visible; 
+    z-index: 1;
+     max-height: 500px;
+} 
+
+
+
+.chip .chiptiptext:hover {
+    visibility: visible;
+    position: absolute;
+}
+
+
 /* ==========================================================================
    Media Queries
    ========================================================================== */
