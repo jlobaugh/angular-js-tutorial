@@ -1,4 +1,4 @@
-<table class="pure-table pure-table-bordered">
+<table class="pure-table pure-table-bordered" style="width: 100%">
     <thead>
         <tr>
             <th>Sun</th>
@@ -14,13 +14,13 @@
 
     <tbody>
         <tr ng-repeat="week in weeks">
-            <td>{{week.sun}}</td>
-            <td>{{week.mon}}</td>
-            <td>{{week.tue}}</td>
-            <td>{{week.wed}}</td>
-            <td>{{week.thu}}</td>
-            <td>{{week.fri}}</td>
-            <td>{{week.sat}}</td>
+            <td  class="day_container" >{{week.sun.getDate()}}</td>
+            <td  class="day_container" >{{week.mon.getDate()}}</td>
+            <td  class="day_container" >{{week.tue.getDate()}}</td>
+            <td  class="day_container" >{{week.wed.getDate()}}</td>
+            <td  class="day_container" >{{week.thu.getDate()}}</td>
+            <td  class="day_container" >{{week.fri.getDate()}}</td>
+            <td  class="day_container" >{{week.sat.getDate()}}</td>
             
         </tr>
     </tbody>

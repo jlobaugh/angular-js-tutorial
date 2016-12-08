@@ -129,7 +129,10 @@ table tr td, th{
   padding: 2px;
  
 }
-
+td.day_container > div { width: 100%; height: 100%; overflow:hidden; }
+td.day_container { height: 80px; }
+td.day_container.top { vertical-align: top; }
+td.day_container.bottom { vertical-align: bottom; }
 /* ==========================================================================
    Media Queries
    ========================================================================== */
