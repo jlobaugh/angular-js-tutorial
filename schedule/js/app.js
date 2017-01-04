@@ -18,11 +18,7 @@ var controller_ = module_.controller('scheduleController', ['$scope', 'scheduleS
 ]);
 
 var service_ = module_.service( 'scheduleService', [ '$window', function (window_) {
-  this.getSchedule = function ( names, startDate )
-  {
-    return window_.jlSchedule.getSchedule(names, startDate);
-
-  }  
+  this.Schedule = window_.jlSchedule; 
 
 
 }]

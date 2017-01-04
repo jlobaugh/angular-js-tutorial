@@ -8,37 +8,55 @@ function(jlSchedule, undefined)
 // private properties
 var MS_PER_MINUTE = 60000;  
 
+var _schedule = [];
 
-jlSchedule.getEndDate = function (startDate) 
+
+
+function _getEndDate(startDate,numDays) 
 { 
-  var sevenDaysLater = startDate.addDays(7);
+  var sevenDaysLater = startDate.addDays(numDays);
   var durationInMinutes = 15;
   var endDate = new Date( sevenDaysLater - durationInMinutes * MS_PER_MINUTE );
   return endDate;
 }
 
-jlSchedule.getScheduleItem = function ( name_, startDate )
+function _getScheduleItem = function ( name, startDate, numDays )
 {
-  var endDate = this.getEndDate( startDate );
-  return {  name : name_ , startDate : startDate, endDate : endDate };
+  var endDate = _getEndDate( startDate, numDays );
+  return {  name : name , startDate : startDate, endDate : endDate };
 }
 
-jlSchedule.getSchedule = function( names, startDate )
+jlSchedule.addDefaultSchedule = function( names )
 {
-  var schedule = [];
+
   var arrayLength_ = names.length;
-  var currentDate = startDate;
+  var currentDate_ = _startDate;
   for ( var i = 0 ; i < arrayLength_; i++ )
   {
-     schedule.push( this.getScheduleItem( names[i], currentDate ));
-     currentDate = currentDate.addDays(7);
+     _schedule.push( _getScheduleItem( names[i], currentDate_, 7 ));
+     currentDate_ = currentDate_.addDays(7);
   }
-  return schedule;
+  _startDate = currentDate_;
+  return _schedule;
+}
 
+jlSchedule.addSchedule = function( name, numDays )
+{
+  _schedule.push( _getScheduleItem( name, _startDate, numDays ) );
+  _startDate.addDays(numDays);
+  return _schedule;
+}
 
+jlSchedule.reset = function()
+{
+  _schedule = [];
 }
 
 
+jlSchedule.setStartDate = function( startDate )
+{
+  _startDate = startDate;
+}
 
 })(window.jlSchedule = window.jlSchedule || {} );
 

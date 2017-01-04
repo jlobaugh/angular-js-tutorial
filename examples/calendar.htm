@@ -1,0 +1,29 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/vendor/pure/pure.css">
+        <script src="js/vendor/angular.js"></script>
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="js/calendar.js"></script>
+        <script src="js/lib/jlCalendar.js"></script>
+    </head>
+    <body ng-app="myApp">
+
+        <p>Calendar control. Demonstrates a directive where a calculation is invoked via an button external to the directive.</p>
+        <div ng-controller="calendarController">
+        {{controlApi}}
+        <button ng-click="myFunc()" >Build</button>
+            <jl-calendar control-api="controlApi" ></jl-calendar>
+        </div>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
