@@ -1,70 +1,41 @@
-
-/* see https://addyosmani.com/blog/essential-js-namespacing/ */
-
-;(
-function(jlSchedule, undefined) 
-{'use strict';
-
-// private properties
-var MS_PER_MINUTE = 60000;  
-
-var _schedule = [];
-var _startDate = new Date();
-
-
-function _getEndDate(startDate,numDays) 
-{ 
-  var sevenDaysLater = startDate.addDays(numDays);
-  var durationInMinutes = 15;
-  var endDate = new Date( sevenDaysLater - durationInMinutes * MS_PER_MINUTE );
-  return endDate;
-}
-
-function _getScheduleItem ( name, startDate, numDays )
-{
-  var endDate = _getEndDate( startDate, numDays );
-  return {  name : name , startDate : startDate, endDate : endDate };
-}
-
-jlSchedule.addDefaultSchedule = function( names )
-{
-
-  var arrayLength_ = names.length;
-  var currentDate_ = _startDate;
-  for ( var i = 0 ; i < arrayLength_; i++ )
-  {
-     _schedule.push( _getScheduleItem( names[i], currentDate_, 7 ));
-     currentDate_ = currentDate_.addDays(7);
-  }
-  _startDate = currentDate_;
-  return _schedule;
-}
-
-jlSchedule.addSchedule = function( name, numDays )
-{
-  _schedule.push( _getScheduleItem( name, _startDate, numDays ) );
-  _startDate.addDays(numDays);
-  return _schedule;
-}
-
-jlSchedule.reset = function()
-{
-  _schedule = [];
-}
-
-
-jlSchedule.setStartDate = function( startDate )
-{
-  _startDate = startDate;
-}
-
-})(window.jlSchedule = window.jlSchedule || {} );
-
-
-// public
-//console.log(jhl.fob); // foobar
-//jhl.sayHello(); // hello world
-
-// assigning new properties
-//jhl.foobar2 = "foobar";
-//console.log(jhl.foobar2);
+var jlScheduleItem = (function () {
+    function jlScheduleItem(name, startDate, endDate) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.name = name;
+    }
+    return jlScheduleItem;
+}());
+var jlSchedule = (function () {
+    function jlSchedule(startDate) {
+        this._schedule = [];
+        this._startDate = startDate;
+    }
+    jlSchedule.prototype._addDays = function (startDate, days) {
+        var result_ = new Date(startDate.valueOf());
+        result_.setDate(result_.getDate() + days);
+        return result_;
+    };
+    jlSchedule.prototype._getEndDate = function (startDate, numDays) {
+        var sevenDaysLater = this._addDays(startDate, numDays);
+        var durationInMinutes = 15;
+        var endDate = new Date(sevenDaysLater.valueOf() - durationInMinutes * jlSchedule.MS_PER_MINUTE);
+        return endDate;
+    };
+    jlSchedule.prototype._getScheduleItem = function (name, startDate, numDays) {
+        var endDate_ = this._getEndDate(startDate, numDays);
+        return new jlScheduleItem(name, startDate, endDate_);
+    };
+    jlSchedule.prototype.addSchedule = function (nameList) {
+        var arrayLength_ = nameList.length;
+        var currentDate_ = this._startDate;
+        for (var name_1 in nameList) {
+            this._schedule.push(this._getScheduleItem(name_1, currentDate_, 7));
+            currentDate_ = this._addDays(currentDate_, 7);
+        }
+        this._startDate = currentDate_;
+        return this._schedule;
+    };
+    return jlSchedule;
+}());
+jlSchedule.MS_PER_MINUTE = 60000;
