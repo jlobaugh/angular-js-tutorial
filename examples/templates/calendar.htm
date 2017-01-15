@@ -1,0 +1,29 @@
+<table class="pure-table pure-table-bordered" style="width: 100%">
+    <thead>
+        <tr>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+            <th>Sat</th>
+            
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr ng-repeat="week in weeks">
+            <td  class="day_container" ><div class="top"> {{week.sun.getDate()}}</div></td>
+            <td  class="day_container" >{{week.mon.getDate()}}</td>
+            <td  class="day_container" >{{week.tue.getDate()}}</td>
+            <td  class="day_container" >{{week.wed.getDate()}}</td>
+            <td  class="day_container" >{{week.thu.getDate()}}</td>
+            <td  class="day_container" >{{week.fri.getDate()}}</td>
+            <td  class="day_container" >{{week.sat.getDate()}}</td>
+            
+        </tr>
+    </tbody>
+</table>
+
+
