@@ -7,9 +7,10 @@ var scheduleInfo = {
 
 var module_ = angular.module('scheduleModule', []);
 var controller_ = module_.controller('scheduleController', ['$scope', 'scheduleService', function($scope,scheduleService) {
-  $scope.scheduleInfo = {};
-  $scope.scheduleInfo.names = scheduleInfo.names;
-  $scope.scheduleInfo.startDate = scheduleInfo.startDate;
+  $scope.scheduleStartDate = new Date( 2016,10,24,09,00,00,00 );
+  scheduleService.Schedule.setStartDate( $scope.scheduleStartDate );
+  $scope.scheduleItems  = scheduleService.Schedule.addDefaultSchedule( [ 'lobaug', 'gaodeng' ] );
+
   $scope.calculateSchedule = function ()
   { 
     $scope.scheduleItems = scheduleService.getSchedule( $scope.scheduleInfo.names, $scope.scheduleInfo.startDate );
