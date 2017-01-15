@@ -7,13 +7,11 @@ var scheduleInfo = {
 
 var module_ = angular.module('scheduleModule', []);
 var controller_ = module_.controller('scheduleController', ['$scope', 'scheduleService', function($scope,scheduleService) {
-  $scope.scheduleInfo = {};
-  $scope.scheduleInfo.names = scheduleInfo.names;
-  $scope.scheduleInfo.startDate = scheduleInfo.startDate;
-  $scope.calculateSchedule = function ()
-  { 
-    $scope.scheduleItems = scheduleService.getSchedule( $scope.scheduleInfo.names, $scope.scheduleInfo.startDate );
-  }; // end calculate schedule
+  $scope.scheduleStartDate = new Date( 2016,10,24,09,00,00,00 );
+  var jlSchedule_ = new scheduleService.Schedule( $scope.scheduleStartDate );
+  $scope.scheduleItems  = jlSchedule_.addSchedule( [ 'lobaug', 'gaodeng' ] );
+
+  
   } // end controller
 ]);
 

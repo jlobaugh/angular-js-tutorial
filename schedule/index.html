@@ -21,21 +21,9 @@
 
 <div ng-app="scheduleModule">
 <div ng-controller="scheduleController">
-   <form name="scheduleForm" >
-   <label for="exampleInput">Pick a date:</label>
-   <input type="date" id="startDateInput" name="input" ng-model="scheduleStartDate"
-       placeholder="yyyy-MM-dd" required />
-   <div role="alert">
-     <span class="error" ng-show="scheduleForm.input.$error.required">
-         Required!</span>
-     <span class="error" ng-show="scheduleForm.input.$error.date">
-         Not a valid date!</span>
-    </div>
-    <button ng-click="calculateSchedule()"  ></button>
-  </form>
+   Start Date: {{scheduleStartDate}}
   <div ng-repeat="scheduleItem in scheduleItems" >
-  {{scheduleItem.name}}, {{scheduleItem.startDate.toLocaleString()}}, {{scheduleItem.endDate}} 
-  <my-customer info="cInfo" ></my-customer>
+	  {{scheduleItem.name}}, {{scheduleItem.startDate.toLocaleString()}}, {{scheduleItem.endDate}} <br> 
   </div>
 </div>
 </div>
