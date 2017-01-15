@@ -29,7 +29,8 @@ var jlSchedule = (function () {
     jlSchedule.prototype.addSchedule = function (nameList) {
         var arrayLength_ = nameList.length;
         var currentDate_ = this._startDate;
-        for (var name_1 in nameList) {
+        for (var _i = 0, nameList_1 = nameList; _i < nameList_1.length; _i++) {
+            var name_1 = nameList_1[_i];
             this._schedule.push(this._getScheduleItem(name_1, currentDate_, 7));
             currentDate_ = this._addDays(currentDate_, 7);
         }

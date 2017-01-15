@@ -51,7 +51,8 @@ class jlSchedule {
         
         let arrayLength_ = nameList.length;
         let currentDate_ = this._startDate;
-        for (let name in nameList) 
+        for (let name of  nameList) 
+
 	{
 	    this._schedule.push( this._getScheduleItem( name, currentDate_, 7 ) );
 	    currentDate_ = this._addDays( currentDate_, 7 );
