@@ -26,6 +26,24 @@
 	  {{scheduleItem.name}}, {{scheduleItem.startDate.toLocaleString()}}, {{scheduleItem.endDate}} <br> 
   </div>
 </div>
+
+<div>
+<div ng-controller="namesController">
+  <form novalidate class="form-style-1" >
+    Name: <input type="text" ng-model="user.name" /><br />
+    <input type="submit" ng-click="add(user.name)" value="Save" class="listBox" />
+
+<select ng-model="selectedCar" ng-options="x.name for x in users" size="6">
+</select>
+
+
+  </form>
+  <pre>user = {{user | json}}</pre>
+</div>
+
+
+
+</div>
 </div>
         <script src="js/vendor/angular.js"></script>
 
