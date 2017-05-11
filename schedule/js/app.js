@@ -15,6 +15,19 @@ var controller_ = module_.controller('scheduleController', ['$scope', 'scheduleS
   } // end controller
 ]);
 
+var namesController = module_.controller('namesController', ['$scope', function($scope)
+{
+  $scope.add = function add(userName)
+ {
+    $scope.users.push( { name : userName } );
+ }
+
+ $scope.users = [];
+
+}
+]);
+
+
 var service_ = module_.service( 'scheduleService', [ '$window', function (window_) {
   this.Schedule = window_.jlSchedule; 
 
